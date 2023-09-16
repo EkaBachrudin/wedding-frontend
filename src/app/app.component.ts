@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetUserProfileUseCase } from 'src/domain/usecases/get-user-profile.usecase';
+import { ProductService } from 'src/service/product.service';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +7,29 @@ import { GetUserProfileUseCase } from 'src/domain/usecases/get-user-profile.usec
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(public getUserProfileUseCase: GetUserProfileUseCase) {}
+  constructor(private productService: ProductService) {}
   title = 'wedding-frontend';
+  data: any;
 
   ngOnInit() {
-    this.getUserProfileUseCase.execute().subscribe({});
+    this.getUser();
+  }
+
+  onProductCreate(products: { pName: string; desc: string; price: string }) {
+    this.productService.createProduct(products).subscribe((res) => {
+      return (this.data = res);
+    }),
+      (error: any): void => {
+        return error;
+      };
+  }
+
+  getUser() {
+    this.productService.getUser().subscribe((response) => {
+      console.log(response);
+    }),
+      (error: any): void => {
+        console.log(error);
+      };
   }
 }
