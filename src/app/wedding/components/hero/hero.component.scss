@@ -1,0 +1,7 @@
+.container {
+  height: 500px;
+
+  .title {
+    @apply h-full font-semibold text-white text-3xl flex justify-center items-center bg-gradient-to-r from-cyan-500 to-blue-500;
+  }
+}

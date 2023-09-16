@@ -25,11 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   getUser() {
-    this.productService.getUser().subscribe((response) => {
-      console.log(response);
-    }),
-      (error: any): void => {
-        console.log(error);
-      };
+    this.productService.getUser().subscribe((response) => {}),
+      (error: any): void => {};
   }
 }
